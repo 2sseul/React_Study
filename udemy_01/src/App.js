@@ -4,7 +4,7 @@ import NewExpense from "./components/Expenses/NewExpense/NewExpense";
 
 const INITIAL_EXPENSES= [
   {
-    id:'e1',
+    id:'e1', 
     title:'Toilet Paper',
     amount: 94.12,
     date: new Date(2021, 2, 3),
