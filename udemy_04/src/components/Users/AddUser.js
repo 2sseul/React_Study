@@ -5,6 +5,7 @@ import Button from '../UI/Button';
 import Card from "../UI/Card";
 import classes from './AddUser.module.css';
 import ErrorModal from "../UI/ErrorModal";
+import Wrapper from "../Helper/Wrapper";
 
 const AddUser = (props) => {
     //useState를 호출해서 초기시작상태를 디폴트로 정의 
@@ -48,7 +49,7 @@ const AddUser = (props) => {
 
     //htmlFor는 자바스크립트에서 label에 for의 속성을 할당하는 props의 이름.
     return(
-        <div>
+        <Wrapper>
             { error && <ErrorModal title={error.title} message={error.message} onConfirm={errorHandler}/>}
             <Card cssClass={classes.input}>
                 <form onSubmit={addUserHandler }>
@@ -59,7 +60,7 @@ const AddUser = (props) => {
                     <Button type="submit">Add User</Button>
                 </form>
             </Card>
-        </div>
+        </Wrapper>
     )
 };
 
