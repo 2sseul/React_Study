@@ -11,22 +11,28 @@ const Login = (props) => {
   const [passwordIsValid, setPasswordIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
 
-  //이미 이메일, 비밀번호 유효성 체크는 유효하지만, useEffect를 사용해보자.
   useEffect(()=>{
-    setFormIsValid(
-      //이메일에 @가 포함되어 있고, 입력된 비밀번호의 길이 > 6인 경우
-      enteredEmail.includes('@') && enteredPassword.trim().length > 6
-    );
-  },[setFormIsValid, enteredEmail, enteredPassword]);
 
-  //email 필드의 모든 키 입력에 대해 emailChangeHandler가 실행되어서
+    //setTimeout함수를 사용하는 이유는, 입력이 들어올 때 마다 상태를 업데이트 해주기 때문에
+    //이를 방지하기 위해 사용자의 입력이 일정시간 없을 때, 유효한지를 검사해주기 위함임.
+    const identifier = setTimeout(()=>{
+      console.log('Checking from validity!');
+      setFormIsValid(
+        enteredEmail.includes('@') && enteredPassword.trim().length > 6
+      );
+    },500);
+
+    //useEffect가 다음 번에 함수를 실행하기 전에 클린업 프로세스로 실행된다.
+    // 모든 사이드이펙트 함수가 실행되기 전, 컴포넌트가 제거되기 전,
+    return () => {
+      console.log('CLEANUP');
+      //새로운 타이머를 설정하기 전 마지막 타이어를 지우는 clearTimeout
+      clearTimeout(identifier);
+    };
+  },[enteredEmail, enteredPassword]);
+
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
-    //form이 유효한지 체크
-    // setFormIsValid(
-    //   //이메일에 @가 포함되어 있고, 입력된 비밀번호의 길이 > 6인 경우
-    //   event.target.value.includes('@') && enteredPassword.trim().length > 6
-    // );
   };
 
   const passwordChangeHandler = (event) => {

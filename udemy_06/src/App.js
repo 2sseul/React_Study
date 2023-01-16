@@ -23,10 +23,7 @@ function App() {
   //useEffect 함수 내부에 정의하면, 얘네는 리액트에서 실행하게 된다.
   //다만, 모든 컴포넌트를 재평가 한 후에 실행되기 때문에 무한루프에 빠지지 X
   //근데 모든 컴포넌트 평가 후에 실행되는것이 아님. 지정된 의존성 변경시에만 !!
-  //ex)앱을 다시 실행했을 경우.앱이 다시 실행됐을 경우 의존성이 변경된 것으로 간주되는데, 의존성이 없었기 때문.
-
-  //실제로 익명함수 useEffect는 앱이 시작될 때 한 번만 실행된다. 그 뒤로 의존성이 전혀 변경되지 않기 때문.
-  //왜냐면 두번째 인자(의존성)가 없기 때문.
+  //ex)앱을 다시 실행했을 경우.
   useEffect(()=>{
 
     const storedUserLoggedInInformation = localStorage.getItem('isLoggedIn');
@@ -35,7 +32,6 @@ function App() {
     //저장되어있으면 true로 설정한다
     setIsLoggedIn(true);
   }
-  //두번째 인자(의존성)을 비워두면, 함수가 처음 실행됐을 때 없던 의존성이 계속 없기 때문에 바뀐게 없다.
   },[]);
 
   const loginHandler = (email, password) => {
@@ -47,7 +43,6 @@ function App() {
     //localStorage.setItem(문자열, 문자열);
     //두번째 인자는 사용자가 로그인 되었을 시 1을 출력하기 위함임.
     localStorage.setItem('isLoggedIn','1');
-    console.log(localStorage.getItem('isLoggedIn'));
     setIsLoggedIn(true);
   };
 
