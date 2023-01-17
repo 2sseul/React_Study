@@ -11,8 +11,14 @@ const Login = (props) => {
   const [passwordIsValid, setPasswordIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
 
+  //컴포넌트가 처음 마운트 되었을 때 실행된다.
+  //즉 로그인 컴포넌트가 처음으로 렌더링 될 때,
+  //모든 컴포넌트 렌더링 주기 후에 실행.
   useEffect(()=>{
+    console.log('EFFECT RUNNING');
+  });
 
+  useEffect(()=>{
     //setTimeout함수를 사용하는 이유는, 입력이 들어올 때 마다 상태를 업데이트 해주기 때문에
     //이를 방지하기 위해 사용자의 입력이 일정시간 없을 때, 유효한지를 검사해주기 위함임.
     const identifier = setTimeout(()=>{
