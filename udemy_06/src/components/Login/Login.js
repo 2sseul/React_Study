@@ -30,9 +30,9 @@ const Login = (props) => {
 
     //useEffect가 다음 번에 함수를 실행하기 전에 클린업 프로세스로 실행된다.
     // 모든 사이드이펙트 함수가 실행되기 전, 컴포넌트가 제거되기 전,
-    return () => {
+    return () => { 
       console.log('CLEANUP');
-      //새로운 타이머를 설정하기 전 마지막 타이어를 지우는 clearTimeout
+      //새로운 타이머를 설정하기 전 마지막 타이어를 지우는 clearTimeout 
       clearTimeout(identifier);
     };
   },[enteredEmail, enteredPassword]);
