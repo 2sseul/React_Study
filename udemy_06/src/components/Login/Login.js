@@ -6,8 +6,8 @@ import Button from '../UI/Button/Button';
 
 //컴포넌트 바깥에 Reducer함수를 선언했는데, 이는 리듀서 함수 내부에서는 컴포넌트 함수 내에서 만들어진 어떤 데이터도 필요하지 않기 때문이다.
 //컴포넌트 내에 만들어진 어떤 데이터와도 상호작용하지 않기 때문에 컴포넌트 바깥에서 선언해도 괜찮다.
-
-const emailReducer = () => {};
+ 
+const emailReducer = (state, action) => {};
 
 const Login = (props) => {
   const [enteredEmail, setEnteredEmail] = useState('');
