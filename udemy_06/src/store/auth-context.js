@@ -1,11 +1,43 @@
-//여러개의 전역 state에 대해 여러개의 context를 가질수 있다.
-//더 큰 state에 하나의 context만을 가질수도 있고 ~
+import React, { useState, useEffect } from "react";
 
-import React from 'react';
-
-//context객체 생성
 const AuthContext = React.createContext({
-    isLoggedIn: false,
+  isLoggedIn: false,
+  onLogout: () => {},
+  onLogin: (email, password) => {},
 });
+
+export const AuthContextProvider = (props) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const storedUserLoggedInInformation = localStorage.getItem("isLoggedIn");
+
+    if (storedUserLoggedInInformation === "1") {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  const logoutHandler = () => {
+    localStorage.removeItem("isLoggedIn");
+    setIsLoggedIn(false);
+  };
+
+  const loginHandler = () => {
+    localStorage.setItem("isLoggedIn", "1");
+    setIsLoggedIn(true);
+  };
+
+  return (
+    <AuthContext.Provider
+      value={{
+        isLoggedIn: isLoggedIn,
+        onLogout: logoutHandler,
+        onLogin: loginHandler,
+      }}
+    >
+      {props.children}
+    </AuthContext.Provider>
+  );
+};
 
 export default AuthContext;
