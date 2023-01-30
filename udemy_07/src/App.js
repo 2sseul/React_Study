@@ -6,9 +6,11 @@ import "./App.css";
 function App() {
   //useState([]) 빈배열로 초기화
   const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   //프로미스 객체를 얻을 때에 then 호출 뒤에 then을 제차 호출해서 사용할 수 있지만 async와 await를 사용할 수도 있다.
   //함수 앞에 async 예약어를 추가하고, 프로미스 객체를 반환하는 작업 앞에 awaut 얘약어를 사용한다.
   async function fetchMoviesHandler() {
+    setIsLoading(true);
     //fetch는 브라우저가 사용할 수 있게 해주는 함수 (Fetch API)
     //두번째 인자를 통해 다양한 선택사항 지정할 수 있는 자바스크립트 객체를 전달할 수 있다.
     //header , body, http요청 메소드의 변경 등
@@ -38,6 +40,7 @@ function App() {
     // });
     //fetch뒤에 .then()함수 추가하면 응답을 받을 때 호출된다.
     //그 뒤에 .catch()써서 잠재적 오류를 잡을 수 있음.(여기서 일단 넘김ㄴ)
+    setIsLoading(false);
   }
 
   return (
@@ -46,7 +49,9 @@ function App() {
         <button onClick={fetchMoviesHandler}>Fetch Movies</button>
       </section>
       <section>
-        <MoviesList movies={movies} />
+        {!isLoading && movies.length > 0 && <MoviesList movies={movies} />}
+        {!isLoading && movies.length === 0 && <p>Found no movies.</p>}
+        {isLoading && <p> Loading ...</p>}
       </section>
     </React.Fragment>
   );
