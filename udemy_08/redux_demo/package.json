@@ -1,0 +1,15 @@
+{
+  "name": "udemy_08",
+  "version": "1.0.0",
+  "description": "section 18: 리덕스에 뛰어들기(컨텍스트 API의 대안)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "redux": "^4.2.1"
+  }
+}
