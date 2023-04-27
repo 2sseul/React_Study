@@ -69,3 +69,26 @@ let cousre = "React - The Complete Guide";
 function add(a: number, b: number) {
   return a + b;
 }
+
+//이 함수에서 아무것도 반환하지 않으면(return문이 없으면)
+//반환타입 void를 사용한다.
+//void는 null 또는 undefined랑 비슷하지만 항상 함수와 결합해서 사용한다는 특징이 있다.
+
+function printOutput(value: any) {
+  console.log(value);
+}
+//void는 함수에만 있는 특수한 타입으로 함수의 반환타입에 사용된다.
+
+//Generics
+
+function insertAtBeginning<T>(array: T[], value: T) {
+  const newArray = [value, ...array];
+  return newArray;
+}
+// 이 함수가 있으면 호출하기만 해도 기존 배열은 유지한 상태로 새로운 값을 추가할 수 있다.
+// 이 함수의 장점: 기존배열을 변경하지 않는다, 대신 새로운 배열을 얻는다.
+
+const demoArray = [1, 2, 3];
+const updatedArray = insertAtBeginning(demoArray, -1);
+
+// updatedArray[0].spilt("");
